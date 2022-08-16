@@ -1,0 +1,18 @@
+
+.bloque1 .equipo{
+    width: 500px;
+    padding: 0% 5%;
+    display: inline-block;
+}
+.bloque1 .foto{
+    height: 240px;
+    margin-bottom: 10px;
+    border-radius: 50%;
+}
+.bloque1 ul li{
+    display: inline;
+}
+    .bloque1 ul li img{
+        height: 35px;
+        margin: 0px 5px;
+    }
