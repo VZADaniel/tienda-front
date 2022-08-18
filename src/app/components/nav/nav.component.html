@@ -1,40 +1,34 @@
-<nav class="navbar  navbar-dark bg-dark ">
-    <div class="container">
-       <!-- <div class="clock text-center text-white mb-4 mt-4 pr-6 " id="clock">
-            
-        <p class="text-center mx-4 pr-4">{{hora | date:'hh:mm:ss a'}} </p>
-        <p class=" text-center mx-4 pr-4"> {{fecha | date:'cccc, dd MMM, yyyy'}}</p>
-        </div>
-        -->
+<nav class="navbar navbar-dark navbar-expand-lg bg-dark sticky-top">
+    <div class="container-fluid">
         <app-reloj></app-reloj>
-        
-        <button class="navbar-toggler mx-6 px-6" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
         <div class=" navbar-collapse collapse " id="navbarNavDropdown">
             <ul class="nav justify-content-end">
                 <li class="nav-item " routerLinkActive="active">
-                    <a class="nav-link active" routerLink="home">Bienvenida</a>
+                    <a class="nav-link" routerLink="home">Bienvenida</a>
+                </li>
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" routerLink="productos">Productos</a>
                 </li>
                 <li class="nav-item" routerLinkActive="active">
                     <a class="nav-link" routerLink="nosotros">Nosotros</a>
                 </li>
-                <li class="nav-item" routerLinkActive="active">
-                    <a class="nav-link" routerLink="servicios">Servicios</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        Sitios de Interés
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="http://angular.io" target="_blank">Angular</a></li>
-                        <li><a class="dropdown-item" href="http://nodejs.org">NodeJS</a></li>
-                        <li><a class="dropdown-item" href="http://www.google.cl">Google</a></li>
-                    </ul>
-                </li>
+                <ng-container *ngIf="auth.isAuthenticated$ | async">
+                  <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                          aria-expanded="false">
+                          Sitios de Interés
+                      </a>
+                      <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" routerLink="productos/lista">Listado de Productos</a></li>
+                          <li><a class="dropdown-item" href="http://nodejs.org">NodeJS</a></li>
+                          <li><a class="dropdown-item" href="http://www.google.cl">Google</a></li>
+                      </ul>
+                  </li>
+                </ng-container>
             </ul>
+        </div>
+        <div class="d-flex">
+          <app-auth-button></app-auth-button>
         </div>
     </div>
 </nav>

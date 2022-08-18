@@ -1,0 +1,70 @@
+<div class="container mt-4 mb-4 bg-dark text-white text-white py-3 rounded">
+  <div class="row align-middle">
+      <div class="col-md-6 align-middle">
+          <h1>{{ titulo }}</h1>
+          <h5 class="text-muted">Se han encontrado {{ productos.length }} {{ productos.length == 1 ? " registro" : " registros"}}</h5>
+      </div>
+      <div class="col-md-6 text-end align-middle">
+          <button class="btn btn-outline-primary " type="button" [routerLink]="['/productos/lista/formulario']" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Agregar Producto">
+              <span class="fs-1">
+                <i class="fas fa-upload"></i>
+              </span>
+          </button>
+      </div>
+  </div>
+</div>
+<div *ngIf="productos.length > 0; else NoHayProductos" class="container mt-4 mb-4">
+  <div class="table-responsive">
+      <table class="table table-bordered table-hover">
+          <thead class="table-dark text-center">
+              <tr>
+                  <th (click)="ordenarListadoEmpleados('codigo')">ID</th>
+                  <th (click)="ordenarListadoEmpleados('nombre')">Nombre</th>
+                  <th>Foto</th>
+                  <th (click)="ordenarListadoEmpleados('email')">Precio</th>
+                  <th (click)="ordenarListadoEmpleados('genero')">Stock</th>
+                  <th>Acciones</th>
+              </tr>
+          </thead>
+          <tbody class="text-center">
+              <tr class="align-middle" *ngFor="let producto of productos | orderList : optionSort.property: optionSort.order | paginate: {itemsPerPage: 10, currentPage: pages}">
+                  <td>{{producto.codigo}}</td>
+                  <td>{{producto.nombre}}</td>
+                  <td>
+                    <img src="http://localhost:8080/api/productos/uploads/{{producto.foto}}" class="img-table" alt="Imagen {{producto.nombre}}" />
+                  </td>
+                  <td>{{producto.precio | currency:'CLP':'symbol-narrow':'1.0-0'}}</td>
+                  <td>{{producto.stock}}</td>
+                  <td>
+                      <div class="d-grid gap-2">
+                            <button class="btn btn-outline-warning" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Editar" [routerLink]="['/productos/lista/formulario', producto.id]">
+                                <i class="fas fa-pen"></i>
+                            </button>
+                            <button class="btn btn-outline-danger" (click)="eliminarProducto(producto)" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Eliminar">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                      </div>
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+      <div class="text-center my-2">
+        <pagination-controls (pageChange)="pages = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+      </div>
+  </div>
+</div>
+
+<ng-template #NoHayProductos>
+  <div class="container mt-4 mb-4 py-4 rounded">
+      <div class="card">
+          <div class="card-header text-center">
+              <span class="text-warning fs-1">
+                  <i class="fas fa-exclamation"></i>
+              </span>
+          </div>
+          <div class="card-body text-center">
+              <h5 class="card-title">Actualmente no hay datos para mostrar...</h5>
+          </div>
+      </div>
+  </div>
+</ng-template>
