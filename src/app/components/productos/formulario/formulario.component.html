@@ -1,5 +1,5 @@
 <div class="container mt-4 mb-4">
-  <form [formGroup]="form">
+  <form [formGroup]="form" enctype="multipart/form-data">
       <div class="card">
           <div class="card-header">
               <h3 class="card-title" *ngIf="!producto.id else TitleBlock">{{titleCreate}}</h3>
@@ -64,16 +64,16 @@
             <div class="form-group row mb-3">
               <label for="foto" class="col-form-label col-sm-2">Foto</label>
               <div class="col-sm-10">
-                  <input type="file" accept="image/*" class="form-control" name="foto" id="foto" formControlName="foto" [(ngModel)]="producto.foto">
+                  <input type="file" accept="image/*" class="form-control" name="foto" id="foto" formControlName="foto" [(ngModel)]="producto.foto" (change)="fileUpload($event)">
               </div>
           </div>
           </div>
           <div class="card-footer">
               <div class="form-group row text-center">
                   <div class="col">
-                      <button *ngIf="!producto.id else elseUpdate" type="button" (click)="onSubmit()" class="btn btn-lg btn-outline-primary m-2">Crear</button>
+                      <button *ngIf="!producto.id else elseUpdate" type="button" (click)="onSubmitCreate()" class="btn btn-lg btn-outline-primary m-2">Crear</button>
           <ng-template #elseUpdate>
-          <button type="button" (click)="updateProducto()" class="btn btn-lg btn-outline-primary m-2">Actualizar</button>
+          <button type="button" (click)="onSubmitUpdate()" class="btn btn-lg btn-outline-primary m-2">Actualizar</button>
           </ng-template>
                       <button type="button" (click)="onReset()" class="btn btn-lg btn-outline-secondary m-2">Limpiar</button>
                       <button type="button" routerLink="/productos/lista" class="btn btn-lg btn-outline-danger m-2">Volver</button>

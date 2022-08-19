@@ -24,43 +24,58 @@ export class ProductosService {
 
   getProducto(id: number): Observable<any> {
     return this.http.get<any>(`${this.backEndPoint}/${id}`).pipe(
-      catchError(e => {
+      catchError((e) => {
         this.router.navigate([`/productos/lista`]);
         console.error(e.error.mensaje);
-        Swal.fire(e.error.mensaje,e.error.error,'error');
+        Swal.fire(e.error.mensaje, e.error.error, 'error');
         return throwError(e);
       })
-    )
+    );
   }
 
   createProducto(producto: Producto): Observable<any> {
-    return this.http.post(this.backEndPoint, producto, {headers: this.httpHeaders}).pipe(
-      map((response: any) => response.data as Producto),
-      catchError(e => {
-        console.error(e.error.mensaje);
-        Swal.fire(e.error.mensaje,e.error.error,'error');
-        return throwError(e);
-      })
-    );
+    return this.http
+      .post(this.backEndPoint, this.formDataGenerate(producto))
+      .pipe(
+        map((response: any) => response.data as Producto),
+        catchError((e) => {
+          console.error(e.error.mensaje);
+          Swal.fire(e.error.mensaje, e.error.error, 'error');
+          return throwError(e);
+        })
+      );
   }
 
   updateProducto(producto: Producto): Observable<any> {
-    return this.http.put<any>(`${this.backEndPoint}/${producto.id}`,producto,{headers: this.httpHeaders}).pipe(
-      catchError(e => {
-        console.error(e.error.mensaje);
-        Swal.fire(e.error.mensaje,e.error.error,'error');
-        return throwError(e);
-      })
-    );
+    return this.http
+      .put<any>(`${this.backEndPoint}/${producto.id}`, this.formDataGenerate(producto))
+      .pipe(
+        catchError((e) => {
+          console.error(e.error.mensaje);
+          Swal.fire(e.error.mensaje, e.error.error, 'error');
+          return throwError(e);
+        })
+      );
+  }
+
+  private formDataGenerate(data: any): FormData {
+    const formData = new FormData();
+    for (let key in data) {
+      formData.append(key, data[key]);
+    }
+
+    return formData;
   }
 
   deleteProducto(id: number): Observable<any> {
-    return this.http.delete<any>(`${this.backEndPoint}/${id}`, {headers: this.httpHeaders}).pipe(
-      catchError(e => {
-        console.error(e.error.mensaje);
-        Swal.fire(e.error.mensaje,e.error.error,'error');
-        return throwError(e);
-      })
-    );
+    return this.http
+      .delete<any>(`${this.backEndPoint}/${id}`, { headers: this.httpHeaders })
+      .pipe(
+        catchError((e) => {
+          console.error(e.error.mensaje);
+          Swal.fire(e.error.mensaje, e.error.error, 'error');
+          return throwError(e);
+        })
+      );
   }
 }
