@@ -1,0 +1,13 @@
+
+
+.search-icon{
+    position: absolute;
+    z-index: 10;
+    right: 80%;
+    top:10px;
+    color: lightskyblue ;
+}
+
+.bground {
+    background-color: rgb(53, 1, 184);
+}
