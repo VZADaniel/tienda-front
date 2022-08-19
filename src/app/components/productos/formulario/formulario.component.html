@@ -8,13 +8,24 @@
               </ng-template>
           </div>
           <div class="card-body">
+            <div class="form-group row mb-3">
+              <label for="codigo" class="col-form-label col-sm-2">Código</label>
+              <div class="col-sm-10">
+                  <input type="text" class="form-control" name="codigo" id="codigo" formControlName="codigo" [(ngModel)]="producto.codigo" [ngClass]="{'is-invalid': submitted && f['codigo'].errors}">
+                  <div *ngIf="submitted && f['codigo'].errors" class="invalid-feedback">
+                      <div *ngIf="f['codigo'].errors['required']">Código Requerido.</div>
+                      <div *ngIf="f['codigo'].errors['minlength']">Código debe tener al menos 3 caracteres.</div>
+                      <div *ngIf="f['codigo'].errors['maxlength']">Código excede el largo máximo permitido (10).</div>
+                  </div>
+              </div>
+          </div>
               <div class="form-group row mb-3">
                   <label for="nombre" class="col-form-label col-sm-2">Nombre</label>
                   <div class="col-sm-10">
                       <input type="text" class="form-control" name="nombre" id="nombre" formControlName="nombre" [(ngModel)]="producto.nombre" [ngClass]="{'is-invalid': submitted && f['nombre'].errors}">
                       <div *ngIf="submitted && f['nombre'].errors" class="invalid-feedback">
                           <div *ngIf="f['nombre'].errors['required']">Nombre Requerido.</div>
-                          <div *ngIf="f['nombre'].errors['minlength']">Nombre debe tener al menos dos caracteres.</div>
+                          <div *ngIf="f['nombre'].errors['minlength']">Nombre debe tener al menos 3 caracteres.</div>
                           <div *ngIf="f['nombre'].errors['maxlength']">Nombre excede el largo máximo permitido (50).</div>
                       </div>
                   </div>
@@ -25,31 +36,37 @@
                       <input type="text" class="form-control" name="descripcion" id="descripcion" formControlName="descripcion" [(ngModel)]="producto.descripcion" [ngClass]="{'is-invalid': submitted && f['descripcion'].errors}">
                       <div *ngIf="submitted && f['descripcion'].errors" class="invalid-feedback">
                           <div *ngIf="f['descripcion'].errors['required']">Descripcion Requerido.</div>
-                          <div *ngIf="f['descripcion'].errors['minlength']">Descripcion debe tener al menos dos caracteres.</div>
-                          <div *ngIf="f['descripcion'].errors['maxlength']">Descripcion excede el largo máximo permitido (50).</div>
+                          <div *ngIf="f['descripcion'].errors['minlength']">Descripcion debe tener al menos 6 caracteres.</div>
+                          <div *ngIf="f['descripcion'].errors['maxlength']">Descripcion excede el largo máximo permitido (100).</div>
                       </div>
                   </div>
               </div>
               <div class="form-group row mb-3">
                   <label for="precio" class="col-form-label col-sm-2">Precio</label>
                   <div class="col-sm-10">
-                      <input type="text" class="form-control" name="precio" id="precio" formControlName="precio" [(ngModel)]="producto.precio" [ngClass]="{'is-invalid': submitted && f['precio'].errors}">
+                      <input type="number" class="form-control" name="precio" id="precio" formControlName="precio" [(ngModel)]="producto.precio" [ngClass]="{'is-invalid': submitted && f['precio'].errors}">
                       <div *ngIf="submitted && f['precio'].errors" class="invalid-feedback">
                           <div *ngIf="f['precio'].errors['required']">Precio Requerido.</div>
-                          <div *ngIf="f['precio'].errors['maxlength']">Precio excede el largo máximo permitido (255).</div>
+                          <div *ngIf="f['precio'].errors['maxlength']">Precio excede el largo máximo permitido (11).</div>
                       </div>
                   </div>
               </div>
               <div class="form-group row mb-3">
                 <label for="stock" class="col-form-label col-sm-2">Stock</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="stock" id="stock" formControlName="stock" [(ngModel)]="producto.stock" [ngClass]="{'is-invalid': submitted && f['stock'].errors}">
+                    <input type="number" class="form-control" name="stock" id="stock" formControlName="stock" [(ngModel)]="producto.stock" [ngClass]="{'is-invalid': submitted && f['stock'].errors}">
                     <div *ngIf="submitted && f['precio'].errors" class="invalid-feedback">
                         <div *ngIf="f['stock'].errors['required']">Stock Requerido.</div>
-                        <div *ngIf="f['stock'].errors['maxlength']">Stock excede el largo máximo permitido (255).</div>
+                        <div *ngIf="f['stock'].errors['maxlength']">Stock excede el largo máximo permitido (1).</div>
                     </div>
                 </div>
             </div>
+            <div class="form-group row mb-3">
+              <label for="foto" class="col-form-label col-sm-2">Foto</label>
+              <div class="col-sm-10">
+                  <input type="file" accept="image/*" class="form-control" name="foto" id="foto" formControlName="foto" [(ngModel)]="producto.foto">
+              </div>
+          </div>
           </div>
           <div class="card-footer">
               <div class="form-group row text-center">
@@ -59,7 +76,7 @@
           <button type="button" (click)="updateProducto()" class="btn btn-lg btn-outline-primary m-2">Actualizar</button>
           </ng-template>
                       <button type="button" (click)="onReset()" class="btn btn-lg btn-outline-secondary m-2">Limpiar</button>
-                      <button type="button" routerLink="/empleados" class="btn btn-lg btn-outline-danger m-2">Volver</button>
+                      <button type="button" routerLink="/productos/lista" class="btn btn-lg btn-outline-danger m-2">Volver</button>
                   </div>
               </div>
           </div>

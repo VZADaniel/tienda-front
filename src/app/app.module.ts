@@ -20,6 +20,7 @@ import { OrderListPipe } from './pipes/order-list.pipe';
 import { TruncateLetterPipe } from './pipes/truncate-letter.pipe';
 import { ListaProductosComponent } from './components/productos/lista-productos/lista-productos.component';
 import { FormularioComponent } from './components/productos/formulario/formulario.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 registerLocaleData(localeES, 'es');
 @NgModule({
@@ -43,6 +44,8 @@ registerLocaleData(localeES, 'es');
     HttpClientModule,
     NgxPaginationModule,
     AuthModule.forRoot(environment.auth0),
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'es' }],
   bootstrap: [AppComponent],

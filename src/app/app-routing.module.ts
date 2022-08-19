@@ -14,6 +14,7 @@ const routes: Routes = [
   { path: 'productos', title: 'Productos', component: ProductosComponent },
   { path: 'productos/lista', title: 'Admin | Listado Productos', component: ListaProductosComponent, canActivate:[AuthGuard] },
   { path: 'productos/lista/formulario', title: 'Admin | Formulario Productos', component: FormularioComponent, canActivate:[AuthGuard] },
+  { path: 'productos/lista/formulario/:id', title: 'Admin | Formulario Productos', component: FormularioComponent, canActivate:[AuthGuard] },
 ];
 
 @NgModule({

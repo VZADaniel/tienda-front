@@ -31,7 +31,7 @@ export class ListaProductosComponent implements OnInit {
     });
   }
 
-  ordenarListadoEmpleados(property: string): void {
+  ordenarListadoProductos(property: string): void {
     const { order } = this.optionSort;
     this.optionSort = {
       property,

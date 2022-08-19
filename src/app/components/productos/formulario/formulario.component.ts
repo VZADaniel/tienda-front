@@ -22,15 +22,13 @@ export class FormularioComponent implements OnInit {
 	producto: Producto = new Producto();
 	submitted: boolean = false;
 
-  private emailPattern: any =
-		/^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
-
 	form: FormGroup = new FormGroup({
+		codigo: new FormControl(''),
 		nombre: new FormControl(''),
 		descripcion: new FormControl(''),
 		precio: new FormControl(''),
 		stock: new FormControl(''),
-		imagen: new FormControl(''),
+		foto: new FormControl(''),
 	});
 
 	constructor(
@@ -43,33 +41,33 @@ export class FormularioComponent implements OnInit {
   ngOnInit(): void {
     this.getProducto();
 		this.form = this.formBuilder.group({
+      codigo: [
+				'',
+				[
+					Validators.required,
+					Validators.minLength(3),
+					Validators.maxLength(10),
+				],
+			],
 			nombre: [
 				'',
 				[
 					Validators.required,
-					Validators.minLength(2),
+					Validators.minLength(3),
 					Validators.maxLength(50),
 				],
 			],
-			apellido: [
+			descripcion: [
 				'',
 				[
 					Validators.required,
-					Validators.minLength(2),
-					Validators.maxLength(50),
+					Validators.minLength(6),
+					Validators.maxLength(100),
 				],
 			],
-			email: [
-				'',
-				[
-					Validators.required,
-					Validators.maxLength(255),
-					Validators.pattern(this.emailPattern),
-				],
-			],
-			genero: ['', [Validators.required]],
-			precio: [0, [Validators.required, Validators.min(0)]],
-			stock: [0, [Validators.required, Validators.min(0)]],
+			precio: [0, [Validators.required, Validators.min(0),Validators.maxLength(11),]],
+			stock: [0, [Validators.required, Validators.min(0),Validators.maxLength(11),]],
+			foto: [''],
 		});
   }
 

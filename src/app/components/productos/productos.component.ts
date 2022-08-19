@@ -20,7 +20,7 @@ export class ProductosComponent implements OnInit {
   }
 
   obtenerProductos():void{
-    this.productoService.getProductos().subscribe((data) => {
+    this.productoService.getProductosTienda().subscribe((data) => {
       this.message = data.message;
       this.productos = data.data;
     });

@@ -10,15 +10,14 @@
         <div class="card">
           <img src="http://localhost:8080/api/productos/uploads/{{producto.foto}}" class="img-fluid" alt="Imagen {{producto.nombre}}" />
           <div class="card-body">
-            <h5 class="card-title">{{producto.nombre}}</h5>
-            <h6 class="card-title">{{producto.descripcion}}</h6>
-            <p class="card-text">
-              <span class="text-muted"><b>CÓDIGO:</b> {{producto.codigo}</span>
-              <br>
-              <b>Precio</b> {{ producto.precio | currency:'CLP':'symbol-narrow':'1.0-0' }}
-              <br>
-              <b>Stock Disponible:</b> {{producto.stock}}
-            </p>
+            <h4 class="card-title"><b>{{producto.nombre}}</b></h4>
+            <hr>
+            <h5>{{producto.descripcion}}</h5>
+            <span class="text-muted"><b>CÓDIGO:</b> {{producto.codigo}}</span>
+            <br>
+            <b>Precio</b> {{ producto.precio | currency:'CLP':'symbol-narrow':'1.0-0' }}
+            <br>
+            <b>Stock Disponible:</b> {{producto.stock}}
           </div>
         </div>
       </div>

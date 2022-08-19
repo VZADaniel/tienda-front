@@ -18,6 +18,10 @@ export class ProductosService {
     return this.http.get<any>(this.backEndPoint);
   }
 
+  getProductosTienda(): Observable<any> {
+    return this.http.get<any>(`${this.backEndPoint}/stock-gt-zero`);
+  }
+
   getProducto(id: number): Observable<any> {
     return this.http.get<any>(`${this.backEndPoint}/${id}`).pipe(
       catchError(e => {
