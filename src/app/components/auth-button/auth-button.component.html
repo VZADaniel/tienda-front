@@ -1,9 +1,10 @@
-<ng-container *ngIf="auth.isAuthenticated$ | async; else loggedOut">
-  <button (click)="logout()" class="btn btn-outline-danger">
-    Log out
-  </button>
-</ng-container>
+<ng-container *ngIf="auth.isAuthenticated$ | async; else loggedOut"></ng-container>
 
 <ng-template #loggedOut>
-  <button (click)="login()" class="btn btn-outline-warning">Log in</button>
+  <button (click)="login()" class="btn btn-outline-warning"><i class="fas fa-sign-in"></i> Log in</button>
+  <a class="btn btn-primary mx-4 bg-dark" data-bs-toggle="button" data-bs-placement="button" routerLink="cart">
+    <span >
+      <i class="fas fa-shopping-cart"></i>
+    </span>
+</a>
 </ng-template>

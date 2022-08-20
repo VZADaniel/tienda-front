@@ -1,7 +1,7 @@
 <nav class="navbar navbar-dark navbar-expand-lg bg-dark sticky-top">
-    <div class="container-fluid">
-        <app-reloj></app-reloj>
-        <div class=" navbar-collapse collapse " id="navbarNavDropdown">
+  <app-reloj></app-reloj>
+    <div class="container">
+        <div class=" navbar-collapse collapse" id="navbarNavDropdown">
             <ul class="nav justify-content-end">
                 <li class="nav-item " routerLinkActive="active">
                     <a class="nav-link" routerLink="home">Bienvenida</a>
@@ -12,22 +12,28 @@
                 <li class="nav-item" routerLinkActive="active">
                     <a class="nav-link" routerLink="nosotros">Nosotros</a>
                 </li>
-                <ng-container *ngIf="auth.isAuthenticated$ | async">
-                  <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                          aria-expanded="false">
-                          Sitios de Interés
-                      </a>
-                      <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" routerLink="productos/lista">Listado de Productos</a></li>
-                          <li><a class="dropdown-item" href="http://nodejs.org">NodeJS</a></li>
-                          <li><a class="dropdown-item" href="http://www.google.cl">Google</a></li>
-                      </ul>
-                  </li>
-                </ng-container>
             </ul>
         </div>
         <div class="d-flex">
+          <ng-container *ngIf="authService.isAuthenticated$ | async">
+            <div class="dropstart">
+              <a href="" type="button" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <img [src]="user.picture" alt="Logo usuario" class="rounded-circle w-25">
+              </a>
+              <ul class="dropdown-menu dropdown-menu-dark">
+                <li class="mx-3">{{user.nickname}}</li>
+                  <li class="mx-3">{{user.email}}</li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" routerLink="cart"><i class="fas fa-shopping-cart"></i> Carrito de Compras</a></li>
+                  <li><a class="dropdown-item" routerLink="productos/lista"><i class="fas fa-clipboard-list"></i> Listado de Productos</a></li>
+                  <li *ngIf="authService.isAuthenticated$ | async">
+                      <button (click)="logout()" class="dropdown-item">
+                        <i class="fas fa-sign-out"></i> Logout
+                      </button>
+                  </li>
+              </ul>
+            </div>
+          </ng-container>
           <app-auth-button></app-auth-button>
         </div>
     </div>

@@ -1,9 +1,5 @@
-export class Producto {
-  id: number;
-  codigo: string;
-  nombre: string;
-  descripcion: string;
-  precio: number;
+import { CartItem } from "./cart-item";
+
+export class Producto extends CartItem {
   stock: number;
-  foto: any;
 }

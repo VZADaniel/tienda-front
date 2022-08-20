@@ -1,0 +1,16 @@
+<div class="container py-4 bg-dark text-white py-2 rounded">
+  <div class="row">
+    <div class="col-md-6 col-12">
+      <h1>{{ titulo }}</h1>
+      <h5 class="text-muted">Productos encontrados {{ message }}</h5>
+    </div>
+    <div class="col-md-6 col-12 d-flex justify-content-end">
+      <div class="navbar text-light">
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" (change)="filter($event)" type="search" placeholder="Buscar Producto" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Buscar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

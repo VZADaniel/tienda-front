@@ -1,0 +1,10 @@
+.img-table {
+  width: 70px;
+  height: 70px;
+}
+
+.total-compra {
+  border: 4px solid black;
+  border-radius: 10px;
+  letter-spacing: 2px;
+}

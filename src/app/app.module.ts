@@ -21,6 +21,10 @@ import { TruncateLetterPipe } from './pipes/truncate-letter.pipe';
 import { ListaProductosComponent } from './components/productos/lista-productos/lista-productos.component';
 import { FormularioComponent } from './components/productos/formulario/formulario.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CartComponent } from './components/cart/cart.component';
+import { HeaderProductosComponent } from './components/productos/header-productos/header-productos.component';
+import { FilterPipe } from './pipes/filter.pipe';
+import { Pagina404Component } from './components/pagina404/pagina404.component';
 
 registerLocaleData(localeES, 'es');
 @NgModule({
@@ -37,6 +41,10 @@ registerLocaleData(localeES, 'es');
     TruncateLetterPipe,
     ListaProductosComponent,
     FormularioComponent,
+    CartComponent,
+    HeaderProductosComponent,
+    FilterPipe,
+    Pagina404Component,
   ],
   imports: [
     BrowserModule,
