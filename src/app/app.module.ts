@@ -25,6 +25,13 @@ import { CartComponent } from './components/cart/cart.component';
 import { HeaderProductosComponent } from './components/productos/header-productos/header-productos.component';
 import { FilterPipe } from './pipes/filter.pipe';
 import { Pagina404Component } from './components/pagina404/pagina404.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FooterComponent } from './components/footer/footer.component';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatIconModule } from '@angular/material/icon';
+import { CheckoutComponent } from './components/checkout/checkout.component';
+import { MatStepperModule } from '@angular/material/stepper';
+import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 
 registerLocaleData(localeES, 'es');
 @NgModule({
@@ -45,6 +52,8 @@ registerLocaleData(localeES, 'es');
     HeaderProductosComponent,
     FilterPipe,
     Pagina404Component,
+    FooterComponent,
+    CheckoutComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,6 +63,10 @@ registerLocaleData(localeES, 'es');
     AuthModule.forRoot(environment.auth0),
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatBadgeModule,
+    MatIconModule,
+    MatStepperModule,
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'es' }],
   bootstrap: [AppComponent],

@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  backend: 'http://localhost:8080/api/productos',
   auth0:{
     domain: 'dev-talentlab.us.auth0.com',
       clientId: 'uVPS8PAE8Pi0FvE2jr7NLvQSZROZHLCb',

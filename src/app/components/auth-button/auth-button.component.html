@@ -2,9 +2,9 @@
 
 <ng-template #loggedOut>
   <button (click)="login()" class="btn btn-outline-warning"><i class="fas fa-sign-in"></i> Log in</button>
-  <a class="btn btn-primary mx-4 bg-dark" data-bs-toggle="button" data-bs-placement="button" routerLink="cart">
+  <button class="btn btn-primary mx-4 bg-dark" type="submit" data-bs-toggle="offcanvas" data-bs-target="#carritoDeCompra">
     <span >
       <i class="fas fa-shopping-cart"></i>
     </span>
-</a>
+</button>
 </ng-template>

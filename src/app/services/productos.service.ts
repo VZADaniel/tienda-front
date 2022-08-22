@@ -4,12 +4,13 @@ import { Router } from '@angular/router';
 import { catchError, map, Observable, throwError } from 'rxjs';
 import { Producto } from '../models/producto';
 import Swal from 'sweetalert2';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductosService {
-  private backEndPoint: string = 'http://localhost:8080/api/productos';
+  private backEndPoint: string = environment.backend;
   private httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
 
   constructor(private http: HttpClient, private router: Router) {}
