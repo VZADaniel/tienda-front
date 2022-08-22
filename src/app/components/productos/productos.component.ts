@@ -11,7 +11,6 @@ import { ProductosService } from 'src/app/services/productos.service';
 export class ProductosComponent implements OnInit {
   @Input() productos: Producto[] = [];
   cantidadProductos: number = 0;
-  searchKey: string = '';
   @Output() searchValue = new EventEmitter<string>();
   public pages: number = 1;
 

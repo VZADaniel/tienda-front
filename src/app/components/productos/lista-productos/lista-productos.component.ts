@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Producto } from 'src/app/models/producto';
 import { ProductosService } from 'src/app/services/productos.service';
 import Swal from 'sweetalert2';
@@ -26,7 +26,6 @@ export class ListaProductosComponent implements OnInit {
   }
   getProductos(): void {
     this.productoService.getProductos().subscribe((data) => {
-      this.mensaje = data.message;
       this.productos = data.data;
     });
   }
@@ -73,5 +72,16 @@ export class ListaProductosComponent implements OnInit {
             });
         }
       });
+  }
+
+  filter(event: any): void {
+    const searchValue = event.target.value.trim().toLocaleLowerCase();
+    if (!searchValue) {
+      this.getProductos();
+    } else {
+      this.productos = this.productos.filter((producto: Producto) =>
+        producto.nombre.toLocaleLowerCase().includes(searchValue)
+      );
+    }
   }
 }

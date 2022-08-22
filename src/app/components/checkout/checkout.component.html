@@ -1,0 +1,173 @@
+<mat-vertical-stepper [linear]="true" #stepper animationDuration="400">
+  <mat-step [stepControl]="formCliente">
+    <form [formGroup]="formCliente">
+      <ng-template matStepLabel>Datos del Cliente</ng-template>
+      <div class="row g-3">
+        <div class="col-12">
+          <div class="row">
+            <div class="col-12 col-md-6 col-xl-4">
+              <label for="nombre" class="col-form-label col-sm-2">Nombre</label>
+              <input type="text" class="form-control" formControlName="nombre" [(ngModel)]="cliente.nombre" id="nombre" placeholder="Nombre"
+                  [ngClass]="{'is-invalid': submittedCliente && fCliente['nombre'].errors}">
+              <div *ngIf="submittedCliente && fCliente['nombre'].errors" class="invalid-feedback">
+                <div *ngIf="fCliente['nombre'].errors['required']">El Nombre Requerido.</div>
+                <div *ngIf="fCliente['nombre'].errors['minlength']">El Nombre debe tener al menos dos caracteres.</div>
+                <div *ngIf="fCliente['nombre'].errors['maxlength']">El Nombre excede el largo máximo permitido (50).</div>
+              </div>
+          </div>
+          <div class="col-12 col-md-6 col-xl-4">
+            <label for="apellido" class="col-form-label col-sm-2">Apellido</label>
+            <input type="text" class="form-control" formControlName="apellido" [(ngModel)]="cliente.apellido" id="apellido" placeholder="Apellido"
+                [ngClass]="{'is-invalid': submittedCliente && fCliente['apellido'].errors}">
+            <div *ngIf="submittedCliente && fCliente['apellido'].errors" class="invalid-feedback">
+              <div *ngIf="fCliente['apellido'].errors['required']">El Apellido Requerido.</div>
+              <div *ngIf="fCliente['apellido'].errors['minlength']">El Apellido debe tener al menos dos caracteres.</div>
+              <div *ngIf="fCliente['apellido'].errors['maxlength']">El Apellido excede el largo máximo permitido (50).</div>
+            </div>
+        </div>
+          <div class="col-12 col-md-6 col-xl-4">
+            <label for="telefono" class="col-form-label col-sm-2">Telefono</label>
+              <input type="text" class="form-control" formControlName="telefono"
+                  [(ngModel)]="cliente.telefono" id="telefono" placeholder="Telefono"
+                  [ngClass]="{'is-invalid': submittedCliente && fCliente['telefono'].errors}">
+              <div *ngIf="submittedCliente && fCliente['telefono'].errors" class="invalid-feedback">
+                  <div *ngIf="fCliente['telefono'].errors['required']">El Telefono es requerido</div>
+                  <div *ngIf="fCliente['telefono'].errors['minlength']">El Telefono debe tener al menos ocho caracteres.</div>
+                  <div *ngIf="fCliente['telefono'].errors['maxlength']">El Telefono excede el largo máximo permitido (15).</div>
+              </div>
+          </div>
+          <div class="col-12 col-md-6 col-xl-4">
+            <label for="correo" class="col-form-label col-sm-2">Email</label>
+              <input type="text" class="form-control" formControlName="correo"
+                  [(ngModel)]="cliente.correo" id="correo" placeholder="Email"
+                  [ngClass]="{'is-invalid': submittedCliente && fCliente['correo'].errors}">
+              <div *ngIf="submittedCliente && fCliente['correo'].errors" class="invalid-feedback">
+                <div *ngIf="fCliente['correo'].errors['required']">El Email Requerido.</div>
+                <div *ngIf="fCliente['correo'].errors['pattern']">Formato ingresado no es válido.</div>
+                <div *ngIf="fCliente['correo'].errors['maxlength']">El Email excede el largo máximo permitido (255).</div>
+              </div>
+          </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <button class="btn btn-primary m-2" matStepperNext (click)="stepTwo()">Siguiente <i class="fas fa-arrow-right"></i></button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="formEnvio">
+    <form [formGroup]="formEnvio">
+      <ng-template matStepLabel>Datos del Cliente</ng-template>
+      <div class="row g-3">
+        <div class="col-12">
+          <div class="row">
+            <div class="col-12 col-md-6 col-xl-4">
+              <label for="calle" class="col-form-label col-sm-2">Calle</label>
+                <input type="text" class="form-control" formControlName="calle" [(ngModel)]="envio.calle" id="calle" placeholder="Calle"
+                    [ngClass]="{'is-invalid': submittedEnvio && fEnvio['calle'].errors}">
+                <div *ngIf="submittedEnvio && fEnvio['calle'].errors" class="invalid-feedback">
+                    <div *ngIf="fEnvio['calle'].errors['required']">La Calle es requerida</div>
+                    <div *ngIf="fEnvio['calle'].errors['minlength']">La Calle debe tener al menos tres caracteres.</div>
+                    <div *ngIf="fEnvio['calle'].errors['maxlength']">La Calle excede el largo máximo permitido (30).</div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-xl-4">
+              <label for="numero" class="col-form-label col-sm-2">Numero</label>
+              <input type="text" class="form-control" formControlName="numero" [(ngModel)]="envio.numero" id="numero" placeholder="#numero"
+                  [ngClass]="{'is-invalid': submittedEnvio && fEnvio['numero'].errors}">
+              <div *ngIf="submittedEnvio && fEnvio['numero'].errors" class="invalid-feedback">
+                  <div *ngIf="fEnvio['numero'].errors['required']">El numero es requerido</div>
+                  <div *ngIf="fEnvio['numero'].errors['minlength']">El numero debe tener al menos un caracter.</div>
+          <div *ngIf="fEnvio['numero'].errors['maxlength']">El numero excede el largo máximo permitido (20).</div>
+              </div>
+          </div>
+          <div class="col-12 col-md-6 col-xl-4">
+              <label for="ciudad" class="col-form-label col-sm-2">Ciudad</label>
+                <input type="text" class="form-control" formControlName="ciudad"
+                    [(ngModel)]="envio.ciudad" id="ciudad" placeholder="Cuidad"
+                    [ngClass]="{'is-invalid': submittedEnvio && fEnvio['ciudad'].errors}">
+                <div *ngIf="submittedEnvio && fEnvio['ciudad'].errors" class="invalid-feedback">
+                    <div *ngIf="fEnvio['ciudad'].errors['required']">La Ciudad es requerida</div>
+                    <div *ngIf="fEnvio['ciudad'].errors['minlength']">La Ciudad debe tener al menos tres caracteres.</div>
+          <div *ngIf="fEnvio['ciudad'].errors['maxlength']">La Ciudad excede el largo máximo permitido (30).</div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-xl-4">
+              <label for="region" class="col-form-label col-sm-2">Región</label>
+                <input type="text" class="form-control" formControlName="region"
+                    [(ngModel)]="envio.region" id="Región" placeholder="Región"
+                    [ngClass]="{'is-invalid': submittedEnvio && fEnvio['region'].errors}">
+                <div *ngIf="submittedEnvio && fEnvio['region'].errors" class="invalid-feedback">
+                    <div *ngIf="fEnvio['region'].errors['required']">La Región es requerida</div>
+                    <div *ngIf="fEnvio['region'].errors['minlength']">La Región debe tener al menos tres caracteres.</div>
+          <div *ngIf="fEnvio['region'].errors['maxlength']">La Región excede el largo máximo permitido (40).</div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <button class="btn btn-primary m-2" matStepperPrevious><i class="fas fa-arrow-left"></i>Volver</button>
+        <button class="btn btn-primary m-2" matStepperNext (click)="confirmStep()">Siguiente <i class="fas fa-arrow-right"></i></button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Confirmar</ng-template>
+    <h3>Resumen</h3>
+    <div class="row">
+      <div class="col-6">
+        <h6>Nombre:{{cliente.nombre}}</h6>
+        <h6>Apellido:{{cliente.apellido}}</h6>
+        <h6>Email:{{cliente.correo}}</h6>
+        <h6>Telefono:{{cliente.telefono}}</h6>
+      </div>
+      <div class="col-6">
+        <h6>Calle:{{envio.calle}}</h6>
+        <h6>Numero:{{envio.numero}}</h6>
+        <h6>Ciudad:{{envio.ciudad}}</h6>
+        <h6>Region:{{envio.region}}</h6>
+      </div>
+      <div class="col-12">
+        <div class="card-block table-responsive m-4">
+          <table class="table table-hover text-center">
+            <thead class="bg-dark text-white">
+              <tr>
+                <th scope="col">Código</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Imagen</th>
+                <th scope="col">Precio Unitario</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let item of cartItems">
+                <th scope="row">{{ item.codigo }}</th>
+                <td>{{ item.nombre }}</td>
+                <td>
+                  <img src="http://localhost:8080/api/productos/uploads/{{item.foto}}" class="img-table" alt="Imagen {{ item.nombre }}"/>
+                </td>
+                <td>{{ item.precio | currency: "CLP" }}</td>
+                <td>
+                  <div class="mb-3">
+                    <span class="mx-3">{{item.cantidad}}</span>
+                  </div>
+                </td>
+                <td>{{ item.total | currency: "CLP" }}</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="col-12">
+            <h3><b>Total: {{ total() | currency: "CLP" }}</b></h3>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <button class="btn btn-primary m-2" matStepperPrevious><i class="fas fa-arrow-left"></i> Volver</button>
+      <button class="btn btn-success m-2" (click)="enviarOrden()"><i class="fas fa-shipping-fast"></i> Confirmar</button>
+    </div>
+  </mat-step>
+</mat-vertical-stepper>

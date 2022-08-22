@@ -1,68 +1,107 @@
-<ng-container *ngIf="cartItems.length > 0">
-  <div class="container">
-   <div class="card-table">
-       <div class="card-product">
-           <table class="table table-responsive m-4 text-center table-hover">
-               <thead class=" bg-dark text-white ">
-                   <tr>
-                       <th scope="col" (click)="ordenarListadoProductos('codigo')">Codigo</th>
-                       <th scope="col" (click)="ordenarListadoProductos('nombre')">Nombre</th>
-                       <th scope="col">Imagen</th>
-                       <th scope="col" (click)="ordenarListadoProductos('precio')">Precio Unitario</th>
-                       <th scope="col" (click)="ordenarListadoProductos('cantidad')">Cantidad</th>
-                       <th scope="col" (click)="ordenarListadoProductos('total')">Total</th>
-                       <th scope="col" >Acciones</th>
-                   </tr>
-               </thead>
-               <tbody>
-                   <tr *ngFor="let item of cartItems | orderList : optionSort.property: optionSort.order">
-                       <th scope="row">{{item.codigo}}</th>
-                       <td>{{item.nombre}}</td>
-                       <td><img src="http://localhost:8080/api/productos/uploads/{{item.foto}}" class="img-table" alt="Imagen {{item.nombre}}" /></td>
-                       <td>{{item.precio | currency:'CLP'}}</td>
-                       <td>
-                        <div class="mb-3">
-                          <button type="button" class="btn btn-outline-danger btn-sm" (click)="disminuir(item)"><i class="fas fa-minus"></i></button>
-                          <span class="mx-3" (change)="verifyBeerQuantity(item)">{{item.cantidad}}</span>
-                          <button type="button" class="btn btn-outline-primary btn-sm" (click)="aumentar(item)"><i class="fas fa-plus"></i></button>
-                        </div>
-                      </td>
-                       <td>{{item.total | currency:'CLP'}}</td>
-                       <td>
-                           <button class="btn btn-danger btn-sm text-white text-center" (click)="removeProduct(item.id)">
-                               <span >
-                                   <i class="fas fa-trash"></i>
-                               </span>
-                           </button>
-                       </td>
-                   </tr>
-               </tbody>
-           </table>
-           <div class="m-4 p-4 text-end">
-             <h3><b>Total: {{total() | currency:'CLP'}}</b></h3>
-             <div class="btn-group">
-               <button class="btn btn-success"><i class="fa-solid fa-cash-register"></i> Comprar</button>
-               <button class="btn btn-danger" (click)="deleteCart()"><i class="fas fa-shopping-cart"></i> Vaciar Carrito</button>
-             </div>
-           </div>
-       </div>
-     </div>
+<div class="offcanvas offcanvas-top h-auto" tabindex="-1" id="carritoDeCompra">
+  <div *ngIf="cartItems.length; else sinProductos">
+    <div class="offcanvas-header">
+      <h2 id="offcanvasRightLabel">Carrito de Compras</h2>
+      <button
+        type="button"
+        class="btn-close text-reset"
+        data-bs-dismiss="offcanvas"
+        aria-label="Close"
+      ></button>
+    </div>
+    <div class="offcanvas-body">
+      <div class="card-block table-responsive m-4">
+        <table class="table table-hover text-center">
+          <thead class="bg-dark text-white">
+            <tr>
+              <th scope="col" (click)="ordenarListadoProductos('codigo')">
+                Codigo
+              </th>
+              <th scope="col" (click)="ordenarListadoProductos('nombre')">
+                Nombre
+              </th>
+              <th scope="col">Imagen</th>
+              <th scope="col" (click)="ordenarListadoProductos('precio')">
+                Precio Unitario
+              </th>
+              <th scope="col" (click)="ordenarListadoProductos('cantidad')">
+                Cantidad
+              </th>
+              <th scope="col" (click)="ordenarListadoProductos('total')">
+                Total
+              </th>
+              <th scope="col">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="let item of cartItems | orderList: optionSort.property:optionSort.order">
+              <th scope="row">{{ item.codigo }}</th>
+              <td>{{ item.nombre }}</td>
+              <td>
+                <img src="http://localhost:8080/api/productos/uploads/{{item.foto}}" class="img-table" alt="Imagen {{ item.nombre }}"/>
+              </td>
+              <td>{{ item.precio | currency: "CLP" }}</td>
+              <td>
+                <div class="mb-3">
+                  <button type="button" class="btn btn-outline-danger btn-sm" (click)="disminuir(item)">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <span class="mx-3" (change)="verifyBeerQuantity(item)">{{item.cantidad}}</span>
+                  <button type="button" class="btn btn-outline-primary btn-sm"(click)="aumentar(item)">
+                    <i class="fas fa-plus"></i>
+                  </button>
+                </div>
+              </td>
+              <td>{{ item.total | currency: "CLP" }}</td>
+              <td>
+                <button class="btn btn-danger btn-sm text-white text-center" (click)="removeProduct(item.id)">
+                  <span>
+                    <i class="fas fa-trash"></i>
+                  </span>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="offcanvas-footer text-end">
+      <div class="container m-3">
+        <div class="row">
+          <div class="col-4"></div>
+          <div class="col-4"></div>
+          <div class="col-4">
+            <h3>
+              <b>Total: {{ total() | currency: "CLP" }}</b>
+            </h3>
+            <div class="btn-group">
+              <a class="btn btn-success" routerLink="/checkout" data-bs-dismiss="offcanvas">
+                <i class="fa-solid fa-cash-register"></i> Comprar
+              </a>
+              <button class="btn btn-danger ml-2" (click)="deleteCart()">
+                <i class="fas fa-shopping-cart"></i> Vaciar Carrito
+              </button>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
   </div>
-</ng-container>
 
-
-<ng-container *ngIf="cartItems.length <= 0">
-   <div class="container-fluid d-flex justify-content-center align-items-center">
-       <div class="card mb-4 mt-4" style="width: 25rem; height: auto;">
-           <h2 class="card-title text-center mt-4 mb-4">Mi Carrito de Compras</h2>
-
-           <div class="card-body">
-               <img src="./../../../assets/img/carrito_vacio.png" class="card-img-top" alt="...">
-             <h4 class="card-text text-center">Agrega algo al carrito</h4>
-             <a routerLink="/productos" class="btn btn-primary d-grid gap-2 col-6 mx-auto mt-4 mb-4">
-                  Compra Ahora
-             </a>
-           </div>
-       </div>
-   </div>
-</ng-container>
+  <ng-template #sinProductos>
+    <div class="offcanvas-header">
+      <h2 class="card-title text-center mt-4 mb-4">Mi Carrito de Compras</h2>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body d-flex justify-content-center">
+        <div class="card-block mb-4 mt-4 h-auto w-25">
+          <img src="./../../../assets/img/carrito_vacio.png" class="card-img-top" alt="..."/>
+          <h4 class="card-text text-center">Agrega algo al carrito</h4>
+          <a routerLink="/productos" class="btn btn-primary d-grid gap-2 col-6 mx-auto mt-4 mb-4" data-bs-dismiss="offcanvas">
+            Compra Ahora
+          </a>
+        </div>
+      </div>
+  </ng-template>
+</div>

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '@auth0/auth0-angular';
-import { CartComponent } from './components/cart/cart.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
 import { HomeComponent } from './components/home/home.component';
 import { NosotrosComponent } from './components/nosotros/nosotros.component';
 import { Pagina404Component } from './components/pagina404/pagina404.component';
@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent, title: 'Home' },
   { path: 'home', redirectTo: '' },
   { path: 'nosotros', component: NosotrosComponent, title: 'Nosotros' },
-  { path: 'cart', component: CartComponent, title: 'Carro de Compras' },
+  { path: 'checkout', component: CheckoutComponent, title: 'Datos de Compra' },
   { path: 'productos', title: 'Productos', component: ProductosComponent },
   {
     path: 'productos/lista',
