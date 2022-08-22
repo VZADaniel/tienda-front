@@ -12,6 +12,7 @@ import { HeaderProductosComponent } from './components/header-productos/header-p
 import { ProductosComponent } from './components/productos/productos.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CartComponent } from './components/cart/cart.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -22,13 +23,15 @@ import { CartComponent } from './components/cart/cart.component';
     NavComponent,
     HeaderProductosComponent,
     ProductosComponent,
-    CartComponent
+    CartComponent,
+  
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
     HttpClientModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

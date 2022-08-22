@@ -6,39 +6,54 @@
         <p class=" text-center mx-4 pr-4"> {{fecha | date:'cccc, dd MMM, yyyy'}}</p>
         </div>
         -->
-        <app-reloj></app-reloj>
         
-        <button class="navbar-toggler mx-6 px-6" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class=" navbar-collapse collapse " id="navbarNavDropdown">
-            <ul class="nav justify-content-end">
-                <li class="nav-item " routerLinkActive="active">
-                    <a class="nav-link active" routerLink="home">Bienvenida</a>
-                </li>
-                <li class="nav-item" routerLinkActive="active">
-                    <a class="nav-link" routerLink="nosotros">Nosotros</a>
-                </li>
-                <li class="nav-item" routerLinkActive="active">
-                    <a class="nav-link" routerLink="productos">Productos</a>
-                </li>
-                <li class="nav-item" routerLinkActive="active">
-                    <a class="nav-link" routerLink="cart">Carrito</a>
-                </li>
+        <div class="row">
+            <div class="col-2">
+                <a class="nav-link-logo" routerLink="/home" ><img src="../../../assets/img/web-1.png" class="logo-web" alt="logo E-web"></a>
+          
+            </div>
 
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        Sitios de Interés
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="http://angular.io" target="_blank">Angular</a></li>
-                        <li><a class="dropdown-item" href="http://nodejs.org">NodeJS</a></li>
-                        <li><a class="dropdown-item" href="http://www.google.cl">Google</a></li>
-                    </ul>
-                </li>
-            </ul>
+            <div class="col-10">
+                <div class="row">
+                    <app-reloj></app-reloj>
+        
+                    <button class="navbar-toggler mx-6 px-6 " type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" >
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class=" navbar-collapse collapse " id="navbarNavDropdown">
+                        <ul class="nav justify-content-end">
+                            <li class="nav-item " routerLinkActive="active">
+                                <a class="nav-link active text-white" routerLink="home">Bienvenida</a>
+                            </li>
+                            <li class="nav-item" routerLinkActive="active">
+                                <a class="nav-link text-white" routerLink="nosotros">Nosotros</a>
+                            </li>
+                            <li class="nav-item" routerLinkActive="active">
+                                <a class="nav-link text-white" routerLink="productos">Productos</a>
+                            </li>
+                            <li class="nav-item" routerLinkActive="active">
+                                <a class="nav-link text-white" routerLink="cart">Carrito</a>
+                            </li>
+            
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    Sitios de Interés
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="http://angular.io" target="_blank">Angular</a></li>
+                                    <li><a class="dropdown-item" href="http://nodejs.org">NodeJS</a></li>
+                                    <li><a class="dropdown-item" href="http://www.google.cl">Google</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+              
+            </div>
         </div>
+        
+       
     </div>
 </nav>

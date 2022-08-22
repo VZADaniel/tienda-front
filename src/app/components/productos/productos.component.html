@@ -1,9 +1,9 @@
 <app-header-productos></app-header-productos>
 <div class="row row-cols-1 row-cols-md-3 g-4 mt-4 mb-4">
-    <div class="col-md-3 col-sm-6" *ngFor="let prod of producto">
+    <div class="col-md-3 col-sm-6" *ngFor="let prod of producto | paginate: { itemsPerPage: 4, currentPage: p }">
       <div class="card h-100 w-100 img-personaje">
            <a href="" class="img-hover">
-                <img src="https://rukminim1.flixcart.com/image/832/832/kwgpz0w0/mobile/r/6/w/-original-imag95yfhejsz5vp.jpeg?q=70" class="card-img-top  mt-4 p-2 img-personaje" alt="celular">
+                <img src="http://localhost:8080/api/productos/uploads/{{prod.foto}}" class="card-img-top  mt-4 p-2 img-personaje" alt="celular">
             </a>
           
         <!-- <img src="..." class="card-img-top" alt="..."> -->
@@ -15,13 +15,16 @@
         </div>
         <div class="row">
           <div class="d-grid gap-2 col-6 mx-auto mt-4 mb-4">
-            <button class="btn btn-primary " data-bs-toggle="button" data-bs-placement="button" title="Comprar" (click)="addtocart(prod)">
+            <button class="btn btn-primary " data-bs-toggle="button" data-bs-placement="button" title="Comprar" (click)="addtocart(producto)">
               Agregar al  <fa-icon [icon]="faComprar"></fa-icon>
             </button>
           </div>
 
         </div>
-      
+       
     </div>
+   
+    
 
 </div>
+<pagination-controls (pageChange)="p = $event"></pagination-controls>

@@ -9,7 +9,7 @@ import { Producto } from './producto';
 })
 export class ProductoService {
   //de que puerto lo va a levantar
-  private urlEndPoint: string = 'http://localhost:8088/api/productos';
+  private urlEndPoint: string = 'http://localhost:8080/api/productos';
   private httpHeaders = new HttpHeaders({'Content-type' : 'application/json'});  
   
   constructor(private http: HttpClient,  private router: Router) { }
