@@ -5,42 +5,48 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class CartService {
- public cartItemList : any = []
- public productList = new BehaviorSubject<any>([]);
+  public cartItemList: any = []
+  public productList = new BehaviorSubject<any>([]);
+  //variable para buscar en buscador
+  public search = new BehaviorSubject<string>("");
 
   constructor() { }
 
-  getProducts(){
+  getProducts() {
     return this.productList.asObservable()
   }
 
-  setProduct(product :any){
-    this.cartItemList.push(...product);
-    this.productList.next(product);
+  setProduct(prod: any) {
+    this.cartItemList.push(...prod);
+    this.productList.next(prod);
   }
 
-  addtocart(product: any){
-    this.cartItemList.push(product);
+  addtocart(prod: any) {
+    this.cartItemList.push(prod);
     this.productList.next(this.cartItemList);
     this.getTotalPrice();
+    console.log(this.cartItemList)
 
   }
-  getTotalPrice(){
-    let grandTotal =0;
-    this.cartItemList.map((a:any)=>{
-      grandTotal+=a.total;
+  getTotalPrice(): number {
+    let granTotal = 0;
+    this.cartItemList.map((a: any) => {
+      granTotal += a.total;
+      console.log(granTotal + 'oli')
     })
+    return granTotal;
   }
-   removeCartItem(product:any){
-    this,this.cartItemList.map((a:any, index:any)=>{
-      if(product.id ===a.id){
-        this.cartItemList.splice(index,1);
+  removeCartItem(prod: any) {
+    this, this.cartItemList.map((a: any, index: any) => {
+      if (prod.id === a.id) {
+        this.cartItemList.splice(index, 1);
       }
     })
-   }
-   removeAllCart(){
-    this.cartItemList =[];
+    this.productList.next(this.cartItemList);
+  }
+  removeAllCart() {
+    this.cartItemList = [];
     this.productList.next(this.cartItemList)
 
-   }
+  }
 }

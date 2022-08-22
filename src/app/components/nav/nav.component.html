@@ -1,15 +1,9 @@
 <nav class="navbar  navbar-dark bg-dark ">
     <div class="container">
-       <!-- <div class="clock text-center text-white mb-4 mt-4 pr-6 " id="clock">
-            
-        <p class="text-center mx-4 pr-4">{{hora | date:'hh:mm:ss a'}} </p>
-        <p class=" text-center mx-4 pr-4"> {{fecha | date:'cccc, dd MMM, yyyy'}}</p>
-        </div>
-        -->
         <app-reloj></app-reloj>
-        
-        <button class="navbar-toggler mx-6 px-6" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler mx-6 px-6" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+            aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class=" navbar-collapse collapse " id="navbarNavDropdown">
@@ -39,6 +33,17 @@
                     </ul>
                 </li>
             </ul>
+            <div>
+                <ul class="navbar-nav d-flex ms-auto text-white">
+                    <li class="nav-item">
+                        <a class="btn btn-outline-success m-2" (click)="login()" *ngIf="! isAuthenticated">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-outline-success m-2" (click)="logout()" *ngIf="isAuthenticated">Logout</a>
+                    </li>
+
+                </ul>
+            </div>
         </div>
     </div>
 </nav>

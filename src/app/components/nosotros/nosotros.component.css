@@ -9,6 +9,27 @@
     margin-bottom: 10px;
     border-radius: 50%;
 }
+
+.bloque1 .equipo1{
+    width: 400px;
+    padding: 0% 5%;
+    display: inline-block;
+}
+.bloque1 .foto1{
+    height: 240px;
+    margin-bottom: 10px;
+    border-radius: 50%;
+}
+
+.bloque1 .foto2{
+    width: 220px;
+    height: 240px;
+    margin-bottom: 10px;
+    border-radius: 50%;
+}
+
+
+
 .bloque1 ul li{
     display: inline;
 }

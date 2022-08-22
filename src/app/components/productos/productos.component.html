@@ -1,27 +1,32 @@
-<app-header-productos></app-header-productos>
+<app-header-productos ></app-header-productos>
 <div class="row row-cols-1 row-cols-md-3 g-4 mt-4 mb-4">
-    <div class="col-md-3 col-sm-6" *ngFor="let prod of producto">
-      <div class="card h-100 w-100 img-personaje">
-           <a href="" class="img-hover">
-                <img src="https://rukminim1.flixcart.com/image/832/832/kwgpz0w0/mobile/r/6/w/-original-imag95yfhejsz5vp.jpeg?q=70" class="card-img-top  mt-4 p-2 img-personaje" alt="celular">
-            </a>
-          
-        <!-- <img src="..." class="card-img-top" alt="..."> -->
-        <div class="card-body">
-          <h5 class="card-title">{{prod.nombre}}</h5>
-          <p class="card-text">{{prod.descripcion}}</p>
-          <p class="card-text">{{prod.codigo}}</p>
-          <p class="card-text">{{prod.precio}}</p>
+  <div class="col-md-3 col-sm-6"
+    *ngFor="let prod of producto | paginate: {itemsPerPage: 8, currentPage: second} | buscarProductos: searchKey :'title'">
+    <div class="card h-100 w-100 img-personaje">
+      <a href="" class="img-hover">
+        <img src="http://localhost:8080/api/productos/uploads/{{prod.foto}}"
+          class="card-img-top  mt-4 p-2 img-personaje" alt="">
+      </a>
+      <div class="card-body">
+        <h5 class="card-title">{{prod.nombre}}</h5>
+        <p class="card-text">{{prod.descripcion}}</p>
+        <p class="card-text">{{prod.codigo}}</p>
+        <p class="card-text">{{prod.precio | currency:"CLP":'symbol-narrow':'1.0-0'}}</p>
+      </div>
+      <div class="row">
+        <div class="d-grid gap-2 col-6 mx-auto  mt-4 mb-4">
+          <button class="btn btn-primary " data-bs-toggle="button" data-bs-placement="button" title="Comprar"
+            (click)="addtocart(prod)">
+            Agregar al <fa-icon [icon]="faComprar"></fa-icon>
+          </button>
         </div>
-        <div class="row">
-          <div class="d-grid gap-2 col-6 mx-auto mt-4 mb-4">
-            <button class="btn btn-primary " data-bs-toggle="button" data-bs-placement="button" title="Comprar" (click)="addtocart(prod)">
-              Agregar al  <fa-icon [icon]="faComprar"></fa-icon>
-            </button>
-          </div>
 
-        </div>
-      
+      </div>
+
     </div>
 
-</div>
+  </div>
+  <div class="d-grid gap-2 col-6 mx-auto mt-4 mb-4">
+    <pagination-controls (pageChange)="second = $event" previousLabel="Anterior" nextLabel="Siguiente">
+    </pagination-controls>
+  </div>

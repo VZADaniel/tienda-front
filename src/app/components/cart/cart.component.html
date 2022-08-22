@@ -1,60 +1,73 @@
-
-<ng-container *ngIf="true">
-   <div class="container">
-    <div class="card-table">
-        <div class="card-product">
-            <table class="table table-responsive m-4">
-                <thead class=" bg-dark text-white ">
-                    <tr>
-                        <th scope="col">Codigo </th>
-                        <th scope="col">Nombre </th>
-                        <th scope="col">Imagen </th>
-                        <th scope="col">Descripcion </th>
-                        <th scope="col">P.Unitario</th>
-                        <th scope="col">Cantidad </th>
-                        <th scope="col">Total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Iphone</td>
-                        <td>Imagen</td>
-                        <td> Es un Iphone 12</td>
-                        <td> 50,000</td>
-                        <td> 1</td>
-                        <td> 50,000</td>
-                        <td> 
-                            <button class="btn btn-danger btn-sm text-white text-center"> 
-                                <span > 
-                                    <fa-icon [icon]="faDelete"></fa-icon>
-                                </span>
-                            </button>
-                        </td>
-                        
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-      </div>
-   </div>
-</ng-container>
-
-
-<ng-container *ngIf="true">
-    <div class="container-fluid d-flex justify-content-center align-items-center">
-        <div class="card mb-4 mt-4" style="width: 25rem; height: auto;">
-            <h2 class="card-title text-center mt-4 mb-4">Mi Carrito de Compras</h2>
-            
-            <div class="card-body">
-                <img src="./../../../assets/img/Captura de pantalla (140).png" class="card-img-top" alt="...">
-              <!-- <h4 class="card-text text-center">Tu carrito esta vacio</h4> -->
-              <h4 class="card-text text-center">Agrega algo al carrito</h4>
-              <button class="btn btn-primary d-grid gap-2 col-6 mx-auto mt-4 mb-4">
-                   Compra Ahora
-              </button>
+<ng-container *ngIf="productos.length !=0">
+    <div class="container mt-4 mb-4 rounded">
+        <div class="card-table">
+            <div class="table table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead class=" bg-dark text-white ">
+                        <tr scope="">
+                            <th class="text-center" scope="col">Item </th>
+                            <th class="text-center" scope="col">Codigo </th>
+                            <th class="text-center" scope="col">Nombre</th>
+                            <th class="text-center" scope="col">Imagen </th>
+                            <th class="text-center" scope="col">Descripcion </th>
+                            <th class="text-center" scope="col">P.Unitario</th>
+                            <th class="text-center" scope="col">Cantidad </th>
+                            <th class="text-center" scope="col">Total</th>
+                            <th class="text-center" scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let prod of productos, let i= index">
+                            <th class="text-center" scope="row">{{i+1}}</th>
+                            <td class="text-center">{{prod.codigo}}</td>
+                            <td class="text-center">{{prod.nombre}}</td>
+                            <td>
+                                <img src="http://localhost:8080/api/productos/uploads/{{prod.foto}}"
+                                    class="d-grid gap-2 col-6 mx-auto mt-4 mb-4 text-center" alt="celular">
+                            </td>
+                            <td class="text-center">{{prod.descripcion}}</td>
+                            <td class="text-center"> {{prod.precio | currency:"CLP":'symbol-narrow':'1.0-0'}}</td>
+                            <td class="text-center"> {{prod.quantity}}</td>
+                            <td class="text-center"> {{prod.precio * prod.quantity |
+                                currency:"CLP":'symbol-narrow':'1.0-0'}} </td>
+                            <td>
+                                <button (click)=" removeItem(prod)"
+                                    class=" btn btn-danger btn-sm text-white text-center">
+                                    <span>
+                                        <fa-icon [icon]="faDelete"></fa-icon>
+                                    </span>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="container-fluid " colspan="4">
+                            <td> <button (click)="emptycart()" class="btn btn-primary">Vaciar Carrito</button></td>
+                            <td> <button routerLink="/productos" class="btn btn-warning">Volver a Tienda</button></td>
+                            <td> <button class="btn btn-success"> Comprar </button></td>
+                            <td><strong class="text-center"> Total General {{granTotal |
+                                    currency:"CLP":'symbol-narrow':'1.0-0'}} </strong></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 </ng-container>
 
+
+<ng-container *ngIf="productos.length ==0">
+    <div class="container-fluid d-flex justify-content-center align-items-center">
+        <div class="card mb-4 mt-4" style="width: 25rem; height: auto;">
+            <h2 class="card-title text-center mt-4 mb-4">Mi Carrito de Compras</h2>
+
+            <div class="card-body">
+                <img src="./../../../assets/img/Captura de pantalla (140).png" class="card-img-top" alt="...">
+
+                <h4 class="card-text text-center">Agrega algo al carrito</h4>
+                <button routerLink="/productos" class="btn btn-primary d-grid gap-2 col-6 mx-auto mt-4 mb-4">
+                    Compra Ahora
+                </button>
+            </div>
+        </div>
+    </div>
+</ng-container>

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -12,6 +12,17 @@ import { HeaderProductosComponent } from './components/header-productos/header-p
 import { ProductosComponent } from './components/productos/productos.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CartComponent } from './components/cart/cart.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { BuscarProductosPipe } from './pipes/buscar-productos.pipe';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AuthModule } from '@auth0/auth0-angular';
+import { environment } from 'src/environments/environment';
+//AGREGAR EL IDIOMA
+import localeES from '@angular/common/locales/es-CL';
+import { registerLocaleData } from '@angular/common';
+import { FooterComponent } from './components/footer/footer.component';
+
+registerLocaleData(localeES,'es');
 
 @NgModule({
   declarations: [
@@ -22,15 +33,25 @@ import { CartComponent } from './components/cart/cart.component';
     NavComponent,
     HeaderProductosComponent,
     ProductosComponent,
-    CartComponent
+    CartComponent,
+    BuscarProductosPipe,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
     HttpClientModule,
+    NgxPaginationModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AuthModule.forRoot(environment.auth0),
   ],
-  providers: [],
+  providers: [
+     //REGISTRO EL EDIOMA
+     {provide: LOCALE_ID, useValue: 'es-CL'}
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
